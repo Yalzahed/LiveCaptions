@@ -39,5 +39,8 @@ class MainActivity : Activity() {
         binding.scanQr.setOnClickListener {
             startActivity(Intent(this, Scanner::class.java))
         }
+        binding.btnExplore.setOnClickListener {
+            startActivity(Intent(this, Explorer::class.java))
+        }
     }
 }

@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/stani/AndroidStudioProjects/LiveCaptions/app/src/main/res/layout/activity_explorer.xml" value="0.176" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/LiveCaptions/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/LiveCaptions/app/src/main/res/layout/activity_scanner.xml" value="0.16" />
+        <entry key="..\:/Users/stani/AndroidStudioProjects/LiveCaptions/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.26268115942028986" />
       </map>
