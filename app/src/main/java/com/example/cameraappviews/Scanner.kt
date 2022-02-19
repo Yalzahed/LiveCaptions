@@ -1,6 +1,7 @@
 package com.example.cameraappviews
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,24 +29,30 @@ typealias BarcodeListener = (barcode: String) -> Unit
 private lateinit var binding: ActivityScannerBinding
 private lateinit var cameraExecutor: ExecutorService
 
-class Scanner : AppCompatActivity(){override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityScannerBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-    // checks if the permissions are granted else asks for permissions (only asks for permissions once)
-    if (allPermissionGranted()) {
-        Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-        startCamera()
-    } else {
-        ActivityCompat.requestPermissions(
-            this,
-            Constants.REQUIRED_PERMISSIONS,
-            Constants.REQUEST_CODE_PERMISSIONS
-        )
+class Scanner : AppCompatActivity(){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityScannerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // checks if the permissions are granted else asks for permissions (only asks for permissions once)
+        if (allPermissionGranted()) {
+            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+            startCamera()
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                Constants.REQUIRED_PERMISSIONS,
+                Constants.REQUEST_CODE_PERMISSIONS
+            )
+        }
+        cameraExecutor = Executors.newSingleThreadExecutor()
+        binding.btnHome3.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        binding.btnExplore3.setOnClickListener {
+            startActivity(Intent(this, Explorer::class.java))
+        }
     }
-    cameraExecutor = Executors.newSingleThreadExecutor()
-
-}
 
     private fun startCamera() {
         // request a camera provider
