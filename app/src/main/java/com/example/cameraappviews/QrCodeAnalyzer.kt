@@ -59,7 +59,7 @@ class QrCodeAnalyzer(
         try {
             // Whenever reader fails to detect a QR code in image
             // it throws NotFoundException
-            val result = reader.decode(binaryBitmap)
+            val result = reader.decodeWithState(binaryBitmap)
             onQrCodesDetected(result)
         } catch (e: NotFoundException) {
             e.printStackTrace()

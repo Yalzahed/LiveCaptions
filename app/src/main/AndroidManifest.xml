@@ -20,6 +20,9 @@
             android:name=".Explorer"
             android:exported="false" />
 
+        <activity
+            android:name=".Scanner"
+            android:exported="false" />
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="barcode" />
@@ -33,7 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Scanner" />
     </application>
 
 </manifest>
