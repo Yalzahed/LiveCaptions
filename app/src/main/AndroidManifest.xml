@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CameraAppViews">
         <activity
+            android:name=".Questionare"
+            android:exported="false" />
+        <activity
             android:name=".Explorer"
             android:exported="false" />
 
