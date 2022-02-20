@@ -29,7 +29,7 @@ import java.util.concurrent.Executors
 private lateinit var binding: ActivityMainBinding
 private lateinit var cameraExecutor: ExecutorService
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
