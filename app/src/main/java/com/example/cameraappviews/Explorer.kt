@@ -17,9 +17,11 @@ class Explorer : AppCompatActivity() {
         binding = ActivityExplorerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.scanQr2.setOnClickListener {
+            finish()
             startActivity(Intent(this, Scanner::class.java))
         }
         binding.btnHome2.setOnClickListener {
+            finish()
             startActivity(Intent(this, MainActivity::class.java))
         }
 
@@ -28,22 +30,26 @@ class Explorer : AppCompatActivity() {
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
             adapter = CardAdapter(collectibleList)
+
+
+
         }
     }
 
     private fun populateCollectibles() {
-        collectibleList.add(Collectibles(R.drawable.bigbrain, "Genius Brain", "Human Biology Exhibit", discovered = true))
-        collectibleList.add(Collectibles(R.drawable.buglab, "Apex Predator", "Bug Lab", discovered = true))
-        collectibleList.add(Collectibles(R.drawable.space, "Intergalactic Explorer", "Space Exhibit", discovered = true))
-        collectibleList.add(Collectibles(R.drawable.frog, "Eco Warrior", "Nature Exhibit", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.space_shuttle, "Space Pioneer", "Space Exhibit", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.planeticeimage3, "Prehistoric Caveman", "Prehistoric Exhibit", discovered = false))
+        collectibleList.clear()
+        collectibleList.add(Questionare.geniusBrain)
+        collectibleList.add(Questionare.bugLab)
+        collectibleList.add(Questionare.intergalacticExplorer)
+        collectibleList.add(Questionare.ecoWorrior)
+        collectibleList.add(Questionare.spacePioneer)
+        collectibleList.add(Questionare.preHistoricCaveman)
+        collectibleList.add(Questionare.geniusBrain2)
+        collectibleList.add(Questionare.bugLab2)
+        collectibleList.add(Questionare.intergalacticExplorer2)
+        collectibleList.add(Questionare.ecoWorrior)
+        collectibleList.add(Questionare.spacePioneer)
+        collectibleList.add(Questionare.preHistoricCaveman)
 
-        collectibleList.add(Collectibles(R.drawable.bigbrain, "Genius Brain", "Human Biology Exhibit", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.buglab, "Apex Predator", "Bug Lab", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.space, "Intergalactic Explorer", "Space Exhibit", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.frog, "Eco Warrior", "Nature Exhibit", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.space_shuttle, "Space Pioneer", "Space Exhibit", discovered = false))
-        collectibleList.add(Collectibles(R.drawable.planeticeimage3, "Prehistoric Caveman", "Prehistoric Exhibit", discovered = false))
     }
 }

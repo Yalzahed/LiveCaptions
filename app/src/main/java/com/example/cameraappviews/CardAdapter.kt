@@ -11,10 +11,12 @@ class CardAdapter(private var collectibles: List<Collectibles>):
         val from = LayoutInflater.from(parent.context)
         val binding = CardCellBinding.inflate(from, parent, false)
         return CardViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.bindCollectible(collectibles[position])
+
     }
 
     override fun getItemCount(): Int = collectibles.size;

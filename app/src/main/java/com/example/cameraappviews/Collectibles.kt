@@ -1,5 +1,8 @@
 package com.example.cameraappviews
 
+import android.util.MutableBoolean
+import androidx.lifecycle.MutableLiveData
+
 var collectibleList = mutableListOf<Collectibles>()
 
 class Collectibles(
@@ -7,5 +10,5 @@ class Collectibles(
     var name: String,
     var location: String,
     val id: Int? = collectibleList.size,
-    val discovered: Boolean
+    var discovered: MutableLiveData<Boolean>
 )

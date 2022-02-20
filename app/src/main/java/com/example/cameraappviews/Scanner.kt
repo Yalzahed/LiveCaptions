@@ -77,7 +77,9 @@ class Scanner : AppCompatActivity(){
                     it.setAnalyzer(cameraExecutor, QrCodeAnalyzer { qrResult ->
                         binding.viewFinder.post {
                             Log.d("QRCodeAnalyzer", "Barcode scanned: ${qrResult.text}")
+                            finish()
                             startActivity(Intent(this, Questionare::class.java))
+
                         }
                     })
                 }

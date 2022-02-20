@@ -17,10 +17,12 @@ class CardViewHolder(
     private val cardCellBinding: CardCellBinding
 ) : RecyclerView.ViewHolder(cardCellBinding.root) {
     fun bindCollectible(collectible: Collectibles) {
-        if (collectible.discovered)
+
+        if (collectible.discovered.value == true)
             cardCellBinding.cover.setImageResource(collectible.collectible)
         else
             cardCellBinding.cover.setImageResource(R.drawable.question_mark)
+
         cardCellBinding.title.text = collectible.name
         cardCellBinding.location.text = collectible.location
     }

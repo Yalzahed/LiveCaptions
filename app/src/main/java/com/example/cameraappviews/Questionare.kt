@@ -1,20 +1,25 @@
 package com.example.cameraappviews
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.ColorRes
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cameraappviews.databinding.ActivityMainBinding
 import com.example.cameraappviews.databinding.ActivityQuestionareBinding
 
 private var questionLibrary  = QuestionLibrary()
-    private var questionNumber = 0
-    private var correct = 0
+var questionNumber = 0
+
 private lateinit var binding: ActivityQuestionareBinding
+
 class Questionare : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        questionNumber = 0
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questionare)
         binding = ActivityQuestionareBinding.inflate(layoutInflater)
@@ -66,10 +71,26 @@ class Questionare : Activity() {
         }
 
 
+
+    }
+    companion object cavemanStatus{
+        var geniusBrain = Collectibles(R.drawable.bigbrain, "Genius Brain", "Human Biology Exhibit", discovered = MutableLiveData(true))
+        var bugLab = Collectibles(R.drawable.buglab, "Apex Predator", "Bug Lab", discovered = MutableLiveData(true))
+        var intergalacticExplorer = Collectibles(R.drawable.space, "Intergalactic Explorer", "Space Exhibit", discovered = MutableLiveData(true))
+        var ecoWorrior = Collectibles(R.drawable.frog, "Eco Warrior", "Nature Exhibit", discovered = MutableLiveData(false))
+        var spacePioneer = Collectibles(R.drawable.space_shuttle, "Space Pioneer", "Space Exhibit", discovered = MutableLiveData(false))
+        var  preHistoricCaveman = Collectibles(R.drawable.planeticeimage3, "Prehistoric Caveman", "Prehistoric Exhibit", discovered = MutableLiveData(false))
+        var geniusBrain2 = Collectibles(R.drawable.bigbrain, "Genius Brain", "Human Biology Exhibit", discovered = MutableLiveData(false))
+        var bugLab2 = Collectibles(R.drawable.buglab, "Apex Predator", "Bug Lab", discovered = MutableLiveData(false))
+        var intergalacticExplorer2 = Collectibles(R.drawable.space, "Intergalactic Explorer", "Space Exhibit", discovered = MutableLiveData(false))
+        var  preHistoricCaveman2 = Collectibles(R.drawable.planeticeimage3, "Prehistoric Caveman", "Prehistoric Exhibit", discovered = MutableLiveData(false))
+        var cavemanDiscovered = false
     }
 
+    @SuppressLint("ResourceType")
     private fun getQuestions(){
-        if(questionNumber == 4){
+        if(questionNumber > 4){
+            cavemanDiscovered = true
             startActivity(Intent(this, Scanner::class.java))
         }
         resetButtons()
