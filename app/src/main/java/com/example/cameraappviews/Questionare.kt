@@ -6,14 +6,17 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cameraappviews.databinding.ActivityMainBinding
 import com.example.cameraappviews.databinding.ActivityQuestionareBinding
+import com.google.android.material.internal.ContextUtils.getActivity
 
 private var questionLibrary  = QuestionLibrary()
 var questionNumber = 0
+private var correctanswers = 0
 
 private lateinit var binding: ActivityQuestionareBinding
 
@@ -28,6 +31,7 @@ class Questionare : Activity() {
         binding.answer1.setOnClickListener {
             if (questionLibrary.answers.contains(binding.answer1.text)){
                 binding.answer1.setBackgroundColor(Color.GREEN)
+                correctanswers+= 1
 
             }
             else{
@@ -39,6 +43,7 @@ class Questionare : Activity() {
         binding.answer2.setOnClickListener {
             if (questionLibrary.answers.contains(binding.answer2.text)){
                 binding.answer2.setBackgroundColor(Color.GREEN)
+                correctanswers+= 1
 
             }
             else{
@@ -51,6 +56,7 @@ class Questionare : Activity() {
         binding.answer3.setOnClickListener {
             if (questionLibrary.answers.contains(binding.answer3.text)){
                 binding.answer3.setBackgroundColor(Color.GREEN)
+                correctanswers+= 1
 
             }
             else{
@@ -62,6 +68,7 @@ class Questionare : Activity() {
         binding.answer4.setOnClickListener {
             if (questionLibrary.answers.contains(binding.answer4.text)){
                 binding.answer4.setBackgroundColor(Color.GREEN)
+                correctanswers+= 1
             }
             else{
                 binding.answer4.setBackgroundColor(Color.RED)
@@ -84,14 +91,32 @@ class Questionare : Activity() {
         var bugLab2 = Collectibles(R.drawable.buglab, "Apex Predator", "Bug Lab", discovered = MutableLiveData(false))
         var intergalacticExplorer2 = Collectibles(R.drawable.space, "Intergalactic Explorer", "Space Exhibit", discovered = MutableLiveData(false))
         var  preHistoricCaveman2 = Collectibles(R.drawable.planeticeimage3, "Prehistoric Caveman", "Prehistoric Exhibit", discovered = MutableLiveData(false))
-        var cavemanDiscovered = false
+        var correct = MutableLiveData(false)
     }
 
     @SuppressLint("ResourceType")
     private fun getQuestions(){
-        if(questionNumber > 4){
-            cavemanDiscovered = true
-            startActivity(Intent(this, Scanner::class.java))
+        if(questionNumber > 4) {
+            if (correctanswers > 4) {
+                correct.postValue(true)
+                Toast.makeText(
+                    this,
+                    "YOU'VE UNLOCKED A NEW BADGE, CHECK IT OUT",
+                    Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, Explorer::class.java)
+                intent.putExtra("correct", true)
+                startActivity(intent)
+
+            } else {
+                Toast.makeText(
+                    this,
+                    "EXPLORE THE EXHIBIT AND TRY AGAIN",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(Intent(this, Scanner::class.java))
+            }
+            finish()
         }
         resetButtons()
         binding.question.text = questionLibrary.getQuestion(questionNumber)
